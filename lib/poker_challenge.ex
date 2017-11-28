@@ -50,4 +50,13 @@ defmodule PokerChallenge do
     |> Enum.sort
     |> Kernel.== [1, 2, 2]
   end
+
+  def three_of_a_kind?(hand) do
+    hand
+    |> Enum.map(&value/1)
+    |> frequencies()
+    |> Map.values
+    |> Enum.max
+    |> Kernel.== 3
+  end
 end
