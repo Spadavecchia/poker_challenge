@@ -63,4 +63,14 @@ defmodule PokerChallengeTest do
     refute PokerChallenge.straight_flush?(@four_of_a_kind)
     assert PokerChallenge.straight_flush?(@straight_flush)
   end
+
+  test "hand value" do
+    assert PokerChallenge.hand_value(@pair_hand) < PokerChallenge.hand_value(@two_pairs_hand)
+    assert PokerChallenge.hand_value(@two_pairs_hand) < PokerChallenge.hand_value(@three_of_a_kind_hand)
+    assert PokerChallenge.hand_value(@three_of_a_kind_hand) < PokerChallenge.hand_value(@straight)
+    assert PokerChallenge.hand_value(@straight) < PokerChallenge.hand_value(@flush)
+    assert PokerChallenge.hand_value(@flush) < PokerChallenge.hand_value(@full_house)
+    assert PokerChallenge.hand_value(@full_house) < PokerChallenge.hand_value(@four_of_a_kind)
+    assert PokerChallenge.hand_value(@four_of_a_kind) < PokerChallenge.hand_value(@straight_flush)
+  end
 end
