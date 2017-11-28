@@ -3,16 +3,21 @@ defmodule PokerChallenge do
   A Poker Game
   """
 
+  def card_frequencies(hand) do
+    hand
+    |> Enum.map(&Card.value/1)
+    |> Stats.frequencies()
+    |> Map.values()
+  end
+
   @doc """
   A hand is `pair` when 2 of the 5 cards in the hand have the same value
   """
   def pair?(hand) do
     hand
-    |> Enum.map(&Card.value/1)
-    |> Stats.frequencies()
-    |> Map.values
-    |> Enum.max
-    |> Kernel.== 2
+    |> card_frequencies()
+    |> Enum.max()
+    |> Kernel.==(2)
   end
 
   @doc """
@@ -20,11 +25,9 @@ defmodule PokerChallenge do
   """
   def two_pairs?(hand) do
     hand
-    |> Enum.map(&Card.value/1)
-    |> Stats.frequencies()
-    |> Map.values
-    |> Enum.sort
-    |> Kernel.== [1, 2, 2]
+    |> card_frequencies()
+    |> Enum.sort()
+    |> Kernel.==([1, 2, 2])
   end
 
   @doc """
@@ -32,10 +35,8 @@ defmodule PokerChallenge do
   """
   def three_of_a_kind?(hand) do
     hand
-    |> Enum.map(&Card.value/1)
-    |> Stats.frequencies()
-    |> Map.values
-    |> Enum.max
-    |> Kernel.== 3
+    |> card_frequencies()
+    |> Enum.max()
+    |> Kernel.==(3)
   end
 end
