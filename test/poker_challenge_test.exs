@@ -10,6 +10,7 @@ defmodule PokerChallengeTest do
   @flush ['8C', '5C', '4C', '3C', '2C']
   @full_house ['5C', '5D', '5H', '4D', '4S']
   @four_of_a_kind ['2H', '2S', '2C', '2D', '7D']
+  @straight_flush ['2H', '3H', '6H', '5H', '4H']
 
   test "pair hand" do
     refute PokerChallenge.pair?(@simple_hand)
@@ -41,17 +42,25 @@ defmodule PokerChallengeTest do
     assert PokerChallenge.flush?(@flush)
   end
 
-  test "full_house" do
+  test "full house" do
     refute PokerChallenge.full_house?(@simple_hand)
     refute PokerChallenge.full_house?(@pair_hand)
     refute PokerChallenge.full_house?(@straight)
     assert PokerChallenge.full_house?(@full_house)
   end
 
-  test "four_of_a_kind" do
+  test "four of a kind" do
     refute PokerChallenge.four_of_a_kind?(@simple_hand)
     refute PokerChallenge.four_of_a_kind?(@pair_hand)
     refute PokerChallenge.four_of_a_kind?(@full_house)
     assert PokerChallenge.four_of_a_kind?(@four_of_a_kind)
+  end
+
+  test "straight flush" do
+    refute PokerChallenge.straight_flush?(@simple_hand)
+    refute PokerChallenge.straight_flush?(@pair_hand)
+    refute PokerChallenge.straight_flush?(@full_house)
+    refute PokerChallenge.straight_flush?(@four_of_a_kind)
+    assert PokerChallenge.straight_flush?(@straight_flush)
   end
 end

@@ -83,4 +83,12 @@ defmodule PokerChallenge do
     |> Kernel.==(4)
   end
 
+  @doc """
+  A hand is `straight flush` when contains 5 cards of the same suit
+  with consecutive values
+  """
+  def straight_flush?(hand) do
+    flush?(hand) && straight?(hand)
+  end
+
 end
