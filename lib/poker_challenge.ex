@@ -39,4 +39,14 @@ defmodule PokerChallenge do
     |> Enum.max()
     |> Kernel.==(3)
   end
+
+  @doc """
+  A hand is `straight` when contains 5 cards with consecutive values
+  """
+  def straight?(hand) do
+    vals = hand |> Enum.map(&Card.value/1) |> Enum.sort()
+    low = List.first(vals)
+    high = List.last(vals)
+    vals == Enum.to_list(low..high)
+  end
 end
