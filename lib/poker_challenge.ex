@@ -49,4 +49,16 @@ defmodule PokerChallenge do
     high = List.last(vals)
     vals == Enum.to_list(low..high)
   end
+
+  @doc """
+  A hand is `flush` when contains 5 cards of the same suit
+  """
+  def flush?(hand) do
+    hand
+    |> Enum.map(&Card.suit/1)
+    |> Stats.frequencies()
+    |> Map.values()
+    |> Enum.max()
+    |> Kernel.==(5)
+  end
 end

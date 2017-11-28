@@ -7,6 +7,7 @@ defmodule PokerChallengeTest do
   @two_pairs_hand ['6C', '5D', '5H', '4D', '4S']
   @three_of_a_kind_hand ['5C', '5D', '5H', '4D', '3S']
   @straight ['6C', '5D', '4H', '3D', '2S']
+  @flush ['8C', '5C', '4C', '3C', '2C']
 
   test "pair hand" do
     refute PokerChallenge.pair?(@simple_hand)
@@ -29,5 +30,12 @@ defmodule PokerChallengeTest do
     refute PokerChallenge.straight?(@simple_hand)
     refute PokerChallenge.straight?(@pair_hand)
     assert PokerChallenge.straight?(@straight)
+  end
+
+  test "flush" do
+    refute PokerChallenge.flush?(@simple_hand)
+    refute PokerChallenge.flush?(@pair_hand)
+    refute PokerChallenge.flush?(@straight)
+    assert PokerChallenge.flush?(@flush)
   end
 end
