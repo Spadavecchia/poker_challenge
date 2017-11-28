@@ -11,6 +11,13 @@ defmodule PokerChallenge do
   end
 
   @doc """
+  Returns a map from distinct items in `col` to the number of times they appear
+  """
+  def frequencies(col) do
+    Enum.reduce(col, Map.new, fn c, acc -> Map.update(acc, c, 1, &(&1+1)) end)
+  end
+
+  @doc """
   Value of a card
   """
   def value([v | _]) do
@@ -24,5 +31,14 @@ defmodule PokerChallenge do
       65 -> 14
       _ -> nil
     end
+  end
+
+  def pair?(hand) do
+    hand
+    |> Enum.map(&value/1)
+    |> frequencies()
+    |> Map.values
+    |> Enum.max
+    |> Kernel.== 2
   end
 end

@@ -2,6 +2,9 @@ defmodule PokerChallengeTest do
   use ExUnit.Case
   doctest PokerChallenge
 
+  @simple_hand ['6C', '5D', '4D', '3S', '2H']
+  @pair_hand ['6C', '5D', '5H', '4D', '3S']
+
   test "suit of a card" do
     assert PokerChallenge.suit('9C') == "C"
     assert PokerChallenge.suit('9H') == "H"
@@ -9,7 +12,7 @@ defmodule PokerChallengeTest do
     assert PokerChallenge.suit('9S') == "S"
   end
 
-  test "value value of a card" do
+  test "value of a card" do
     assert PokerChallenge.value('2C') == 2
     assert PokerChallenge.value('3C') == 3
     assert PokerChallenge.value('4H') == 4
@@ -23,5 +26,14 @@ defmodule PokerChallengeTest do
     assert PokerChallenge.value('QD') == 12
     assert PokerChallenge.value('KS') == 13
     assert PokerChallenge.value('AS') == 14
+  end
+
+  test "frequencies in a collection" do
+    assert PokerChallenge.frequencies([1, 2, 3, 3, 3, 4]) == %{1 => 1, 2 => 1, 3 => 3, 4 => 1}
+  end
+
+  test "pair hand" do
+    refute PokerChallenge.pair?(@simple_hand)
+    assert PokerChallenge.pair?(@pair_hand)
   end
 end
