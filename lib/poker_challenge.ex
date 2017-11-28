@@ -4,13 +4,6 @@ defmodule PokerChallenge do
   """
 
   @doc """
-  Suit of a card
-  """
-  def suit([_ | s]) do
-    to_string s
-  end
-
-  @doc """
   Returns a map from distinct items in `col` to the number of times they appear
   """
   def frequencies(col) do
@@ -18,42 +11,35 @@ defmodule PokerChallenge do
   end
 
   @doc """
-  Value of a card
+  A hand is `pair` when 2 of the 5 cards in the hand have the same value
   """
-  def value([v | _]) do
-    nv = v |> to_string() |> String.to_integer()
-    case nv do
-      x when x in 50..58 -> x - 48
-      84 -> 10
-      74 -> 11
-      81 -> 12
-      75 -> 13
-      65 -> 14
-      _ -> nil
-    end
-  end
-
   def pair?(hand) do
     hand
-    |> Enum.map(&value/1)
+    |> Enum.map(&Card.value/1)
     |> frequencies()
     |> Map.values
     |> Enum.max
     |> Kernel.== 2
   end
 
+  @doc """
+  A hand is `two pair` when contains 2 different pairs
+  """
   def two_pairs?(hand) do
     hand
-    |> Enum.map(&value/1)
+    |> Enum.map(&Card.value/1)
     |> frequencies()
     |> Map.values
     |> Enum.sort
     |> Kernel.== [1, 2, 2]
   end
 
+  @doc """
+  A hand is `three of a kind` when three of the cards in the hand have the same value
+  """
   def three_of_a_kind?(hand) do
     hand
-    |> Enum.map(&value/1)
+    |> Enum.map(&Card.value/1)
     |> frequencies()
     |> Map.values
     |> Enum.max
