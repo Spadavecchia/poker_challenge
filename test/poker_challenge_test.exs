@@ -7,10 +7,6 @@ defmodule PokerChallengeTest do
   @two_pairs_hand ['6C', '5D', '5H', '4D', '4S']
   @three_of_a_kind_hand ['5C', '5D', '5H', '4D', '3S']
 
-  test "frequencies in a collection" do
-    assert PokerChallenge.frequencies([1, 2, 3, 3, 3, 4]) == %{1 => 1, 2 => 1, 3 => 3, 4 => 1}
-  end
-
   test "pair hand" do
     refute PokerChallenge.pair?(@simple_hand)
     assert PokerChallenge.pair?(@pair_hand)

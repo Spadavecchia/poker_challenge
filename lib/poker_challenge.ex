@@ -4,19 +4,12 @@ defmodule PokerChallenge do
   """
 
   @doc """
-  Returns a map from distinct items in `col` to the number of times they appear
-  """
-  def frequencies(col) do
-    Enum.reduce(col, Map.new, fn c, acc -> Map.update(acc, c, 1, &(&1+1)) end)
-  end
-
-  @doc """
   A hand is `pair` when 2 of the 5 cards in the hand have the same value
   """
   def pair?(hand) do
     hand
     |> Enum.map(&Card.value/1)
-    |> frequencies()
+    |> Stats.frequencies()
     |> Map.values
     |> Enum.max
     |> Kernel.== 2
@@ -28,7 +21,7 @@ defmodule PokerChallenge do
   def two_pairs?(hand) do
     hand
     |> Enum.map(&Card.value/1)
-    |> frequencies()
+    |> Stats.frequencies()
     |> Map.values
     |> Enum.sort
     |> Kernel.== [1, 2, 2]
@@ -40,7 +33,7 @@ defmodule PokerChallenge do
   def three_of_a_kind?(hand) do
     hand
     |> Enum.map(&Card.value/1)
-    |> frequencies()
+    |> Stats.frequencies()
     |> Map.values
     |> Enum.max
     |> Kernel.== 3
