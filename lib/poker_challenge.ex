@@ -1,18 +1,12 @@
 defmodule PokerChallenge do
   @moduledoc """
-  Documentation for PokerChallenge.
+  A Poker Game
   """
 
   @doc """
-  Hello world.
-
-  ## Examples
-
-      iex> PokerChallenge.hello
-      :world
-
+  Suit of a card
   """
-  def hello do
-    :world
+  def suit([_ | s]) do
+    to_string s
   end
 end
