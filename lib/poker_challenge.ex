@@ -72,4 +72,15 @@ defmodule PokerChallenge do
     |> Enum.sort()
     |> Kernel.==([2, 3])
   end
+
+  @doc """
+  A hand is `four of a kind` when contains 4 cards with the same value
+  """
+  def four_of_a_kind?(hand) do
+    hand
+    |> card_frequencies()
+    |> Enum.max()
+    |> Kernel.==(4)
+  end
+
 end
