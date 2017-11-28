@@ -61,4 +61,15 @@ defmodule PokerChallenge do
     |> Enum.max()
     |> Kernel.==(5)
   end
+
+  @doc """
+  A hand is `full house` when contains 3 cards of the same value,
+  with the remaining 2 cards forming a pair.
+  """
+  def full_house?(hand) do
+    hand
+    |> card_frequencies()
+    |> Enum.sort()
+    |> Kernel.==([2, 3])
+  end
 end
