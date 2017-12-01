@@ -2,16 +2,16 @@ defmodule HandTest do
   use ExUnit.Case
   doctest Hand
 
-  @simple_hand          ['8C', '5D', '4D', '3S', '2H']
-  @pair_hand            ['6C', '5D', '5H', '4D', '3S']
-  @two_pairs_hand       ['6C', '5D', '5H', '4D', '4S']
-  @three_of_a_kind_hand ['5C', '5D', '5H', '4D', '3S']
-  @straight             ['6C', '5D', '4H', '3D', '2S']
-  @straight_high        ['AC', 'KD', 'QH', 'JD', 'TS']
-  @flush                ['8C', '5C', '4C', '3C', '2C']
-  @full_house           ['5C', '5D', '5H', '4D', '4S']
-  @four_of_a_kind       ['2H', '2S', '2C', '2D', '7D']
-  @straight_flush       ['2H', '3H', '6H', '5H', '4H']
+  @simple_hand          Enum.shuffle(['8C', '5D', '4D', '3S', '2H'])
+  @pair_hand            Enum.shuffle(['6C', '5D', '5H', '4D', '3S'])
+  @two_pairs_hand       Enum.shuffle(['6C', '5D', '5H', '4D', '4S'])
+  @three_of_a_kind_hand Enum.shuffle(['5C', '5D', '5H', '4D', '3S'])
+  @straight             Enum.shuffle(['6C', '5D', '4H', '3D', '2S'])
+  @straight_high        Enum.shuffle(['AC', 'KD', 'QH', 'JD', 'TS'])
+  @flush                Enum.shuffle(['8C', '5C', '4C', '3C', '2C'])
+  @full_house           Enum.shuffle(['5C', '5D', '5H', '4D', '4S'])
+  @four_of_a_kind       Enum.shuffle(['2H', '2S', '2C', '2D', '7D'])
+  @straight_flush       Enum.shuffle(['2H', '3H', '6H', '5H', '4H'])
 
   test "pair hand" do
     refute Hand.pair?(@simple_hand)
