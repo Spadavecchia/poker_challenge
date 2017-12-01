@@ -16,5 +16,6 @@ defmodule PokerChallengeTest do
   test "check the hand winner" do
     assert PokerChallenge.winner(@pair_low_value, @high_card) == "White wins"
     assert PokerChallenge.winner(@high_card, @pair_low_value) == "Black wins"
+    assert PokerChallenge.winner(@high_card, @high_card) == "Draw!"
   end
 end
