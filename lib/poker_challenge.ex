@@ -2,8 +2,11 @@ defmodule PokerChallenge do
   @moduledoc """
   A Poker Game
   """
+  @white_win_msg "White wins"
+  @black_win_msg "Black wins"
+  @draw_msg "Draw!"
 
-  def value_card_sorted_by_frequencies(hand) do
+  def relative_value_of_hand(hand) do
     hand
     |> Enum.map(&Card.value/1)
     |> Stats.frequencies()
@@ -12,22 +15,25 @@ defmodule PokerChallenge do
     |> Enum.map(&(elem(&1, 0)))
   end
 
-  def compare_by_card_values(w, b) do
-    sw = value_card_sorted_by_frequencies(w)
-    sb = value_card_sorted_by_frequencies(b)
-    do_compare_card_values(sw, sb)
+  def winner_by_card_values(w, b) do
+    sw = relative_value_of_hand(w)
+    sb = relative_value_of_hand(b)
+    compare_relative_value(sw, sb)
   end
 
-  def do_compare_card_values([], []), do: "Draw!"
-  def do_compare_card_values([wc | _], [bc | _]) when wc > bc, do: "White wins"
-  def do_compare_card_values([wc | _], [bc | _]) when wc < bc, do: "Black wins"
-  def do_compare_card_values([_ | w], [_ | b]), do: do_compare_card_values(w, b)
+  def compare_relative_value([], []), do: @draw_msg
+  def compare_relative_value([wc | _], [bc | _]) when wc > bc, do: @white_win_msg
+  def compare_relative_value([wc | _], [bc | _]) when wc < bc, do: @black_win_msg
+  def compare_relative_value([_ | w], [_ | b]), do: compare_relative_value(w, b)
 
+  @doc """
+  English text showing the winner hand between two hands
+  """
   def winner(w, b) do
     cond do
-      Hand.value(w) > Hand.value(b) -> "White wins"
-      Hand.value(w) < Hand.value(b) -> "Black wins"
-      true                          -> compare_by_card_values(w, b)
+      Hand.value(w) > Hand.value(b) -> @white_win_msg
+      Hand.value(w) < Hand.value(b) -> @black_win_msg
+      true                          -> winner_by_card_values(w, b)
     end
   end
 end
