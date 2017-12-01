@@ -25,9 +25,9 @@ defmodule PokerChallenge do
 
   def winner(w, b) do
     cond do
-      Hand.hand_value(w) > Hand.hand_value(b) -> "White wins"
-      Hand.hand_value(w) < Hand.hand_value(b) -> "Black wins"
-      true                                    -> compare_by_card_values(w, b)
+      Hand.value(w) > Hand.value(b) -> "White wins"
+      Hand.value(w) < Hand.value(b) -> "Black wins"
+      true                          -> compare_by_card_values(w, b)
     end
   end
 end

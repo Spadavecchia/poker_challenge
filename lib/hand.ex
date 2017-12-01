@@ -77,7 +77,7 @@ defmodule Hand do
   @doc """
   We can establish the hand value to numeric value to compare hands
   """
-  def hand_value(hand) do
+  def value(hand) do
     cond do
       Hand.straight_flush?(hand)  -> 8
       Hand.four_of_a_kind?(hand)  -> 7

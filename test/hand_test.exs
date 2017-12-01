@@ -67,12 +67,12 @@ defmodule HandTest do
   end
 
   test "hand value" do
-    assert Hand.hand_value(@pair_hand)            < Hand.hand_value(@two_pairs_hand)
-    assert Hand.hand_value(@two_pairs_hand)       < Hand.hand_value(@three_of_a_kind_hand)
-    assert Hand.hand_value(@three_of_a_kind_hand) < Hand.hand_value(@straight)
-    assert Hand.hand_value(@straight)             < Hand.hand_value(@flush)
-    assert Hand.hand_value(@flush)                < Hand.hand_value(@full_house)
-    assert Hand.hand_value(@full_house)           < Hand.hand_value(@four_of_a_kind)
-    assert Hand.hand_value(@four_of_a_kind)       < Hand.hand_value(@straight_flush)
+    assert Hand.value(@pair_hand)            < Hand.value(@two_pairs_hand)
+    assert Hand.value(@two_pairs_hand)       < Hand.value(@three_of_a_kind_hand)
+    assert Hand.value(@three_of_a_kind_hand) < Hand.value(@straight)
+    assert Hand.value(@straight)             < Hand.value(@flush)
+    assert Hand.value(@flush)                < Hand.value(@full_house)
+    assert Hand.value(@full_house)           < Hand.value(@four_of_a_kind)
+    assert Hand.value(@four_of_a_kind)       < Hand.value(@straight_flush)
   end
 end
