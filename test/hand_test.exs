@@ -75,4 +75,16 @@ defmodule HandTest do
     assert Hand.value(@full_house)      < Hand.value(@four_of_a_kind)
     assert Hand.value(@four_of_a_kind)  < Hand.value(@straight_flush)
   end
+
+  test "hand description" do
+    assert Hand.description(@straight_flush)  == "straight flush"
+    assert Hand.description(@four_of_a_kind)  == "four of a kind"
+    assert Hand.description(@full_house)      == "full house"
+    assert Hand.description(@flush)           == "flush"
+    assert Hand.description(@straight)        == "straight"
+    assert Hand.description(@three_of_a_kind) == "three of a kind"
+    assert Hand.description(@two_pairs)       == "two pairs"
+    assert Hand.description(@pair)            == "a pair"
+    assert Hand.description(@simple)          == "a high card"
+  end
 end
