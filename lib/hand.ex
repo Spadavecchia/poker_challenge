@@ -1,4 +1,13 @@
 defmodule Hand do
+  @straight_flush_value   8
+  @four_of_a_kind_value   7
+  @full_house_value       6
+  @flush_value            5
+  @straight_value         4
+  @three_of_a_kind_value  3
+  @two_pairs_value        2
+  @pair_value             1
+
   def card_frequencies(hand) do
     hand
     |> Enum.map(&Card.value/1)
@@ -79,15 +88,32 @@ defmodule Hand do
   """
   def value(hand) do
     cond do
-      Hand.straight_flush?(hand)  -> 8
-      Hand.four_of_a_kind?(hand)  -> 7
-      Hand.full_house?(hand)      -> 6
-      Hand.flush?(hand)           -> 5
-      Hand.straight?(hand)        -> 4
-      Hand.three_of_a_kind?(hand) -> 3
-      Hand.two_pairs?(hand)       -> 2
-      Hand.pair?(hand)            -> 1
+      Hand.straight_flush?(hand)  -> @straight_flush_value
+      Hand.four_of_a_kind?(hand)  -> @four_of_a_kind_value
+      Hand.full_house?(hand)      -> @full_house_value
+      Hand.flush?(hand)           -> @flush_value
+      Hand.straight?(hand)        -> @straight_value
+      Hand.three_of_a_kind?(hand) -> @three_of_a_kind_value
+      Hand.two_pairs?(hand)       -> @two_pairs_value
+      Hand.pair?(hand)            -> @pair_value
       true                        -> 0
     end
   end
+
+  @doc """
+  English description of hand value
+  """
+  def description(hand) do
+    cond do
+      value(hand) == @straight_flush_value  -> "straight flush"
+      value(hand) == @four_of_a_kind_value  -> "four of a kind"
+      value(hand) == @full_house_value      -> "full house"
+      value(hand) == @flush_value           -> "flush"
+      value(hand) == @straight_value        -> "straight"
+      value(hand) == @three_of_a_kind_value -> "three of a kind"
+      value(hand) == @two_pairs_value       -> "two pairs"
+      value(hand) == @pair_value            -> "a pair"
+    end
+  end
+
 end
