@@ -14,15 +14,14 @@ defmodule PokerChallengeTest do
   @full_house_low       Enum.shuffle(['5C', '5D', '5H', '3D', '3S'])
 
   test "check the hand winner" do
-    assert PokerChallenge.winner(@pair_low, @high_card)                   == "White wins"
-    assert PokerChallenge.winner(@high_card, @pair_low)                   == "Black wins"
+    assert PokerChallenge.winner(@pair_low, @high_card)                   == "White wins with a pair"
+    assert PokerChallenge.winner(@high_card, @pair_low)                   == "Black wins with a pair"
     assert PokerChallenge.winner(@high_card, Enum.shuffle(@high_card))    == "Draw!"
-    assert PokerChallenge.winner(@high_card, @high_card_low)              == "White wins"
-    assert PokerChallenge.winner(@pair_low, @pair)                        == "Black wins"
-    assert PokerChallenge.winner(@pair, @pair_high)                       == "Black wins"
-    assert PokerChallenge.winner(@three_of_a_kind_high, @three_of_a_kind) == "White wins"
-    assert PokerChallenge.winner(@three_of_a_kind, @three_of_a_kind_low)  == "White wins"
-    assert PokerChallenge.winner(@three_of_a_kind, @three_of_a_kind_low)  == "White wins"
-    assert PokerChallenge.winner(@full_house, @full_house_low)            == "White wins"
+    assert PokerChallenge.winner(@high_card, @high_card_low)              == "White wins with a high card - 7 over 5"
+    assert PokerChallenge.winner(@pair_low, @pair)                        == "Black wins with a pair - 3 over 2"
+    assert PokerChallenge.winner(@pair, @pair_high)                       == "Black wins with a pair - 7 over 6"
+    assert PokerChallenge.winner(@three_of_a_kind_high, @three_of_a_kind) == "White wins with three of a kind - 3 over 2"
+    assert PokerChallenge.winner(@three_of_a_kind, @three_of_a_kind_low)  == "White wins with three of a kind - 6 over 5"
+    assert PokerChallenge.winner(@full_house, @full_house_low)            == "White wins with full house - 4 over 3"
   end
 end
