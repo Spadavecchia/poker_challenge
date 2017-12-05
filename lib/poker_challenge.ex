@@ -31,7 +31,7 @@ defmodule PokerChallenge do
   """
   def winner(w, b) do
     cond do
-      Hand.value(w) > Hand.value(b) -> @white_win_msg
+      Hand.value(w) > Hand.value(b) -> "#{@white_win_msg} with #{Hand.description(w)}"
       Hand.value(w) < Hand.value(b) -> @black_win_msg
       true                          -> winner_by_card_values(w, b)
     end
